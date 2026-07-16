@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 90" role="img" aria-labelledby="title">
+  <title id="title">رمز ذا هاوس</title>
+  <g fill="#F45B45">
+    <path d="M7 59C24 42 48 38 77 49C67 70 36 80 7 59Z"/>
+    <path d="M51 45C54 23 69 7 94 4C93 29 79 45 54 51Z"/>
+    <path d="M47 45C35 26 22 17 7 21C11 40 26 50 48 51Z"/>
+    <path d="M72 52C85 42 103 43 116 51C105 65 88 69 72 60Z"/>
+  </g>
+</svg>
