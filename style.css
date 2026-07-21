@@ -698,8 +698,7 @@ h1, h2, h3, .brand-copy strong, .map-pin b, .cup-brand-name {
   aspect-ratio: 1;
   object-fit: contain;
   object-position: center;
-  border-radius: 0;
-  clip-path: none;
+  border-radius: 50%;
   filter: drop-shadow(0 8px 18px rgba(244, 91, 69, .18));
 }
 
@@ -760,85 +759,74 @@ h1, h2, h3, .brand-copy strong, .map-pin b, .cup-brand-name {
   }
 }
 
-/* =========================================================
-   HEADER LOGO — SQUARE, NOT CIRCULAR
-   ========================================================= */
-.brand-header,
-.brand-header .brand-logo,
-.site-header.scrolled .brand-header .brand-logo {
+/* ===== FINAL LOCATION LOGO FIX ===== */
+.visit-map .map-pin.map-brand-card {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) rotate(-3deg) !important;
+  width: 190px !important;
+  height: 220px !important;
+  padding: 18px 16px 15px !important;
+  box-sizing: border-box !important;
+  border: 2px solid rgba(21,19,19,.70) !important;
   border-radius: 0 !important;
-  clip-path: none !important;
-  -webkit-mask-image: none !important;
-  mask-image: none !important;
-  overflow: visible !important;
+  background: #fffaf4 !important;
+  box-shadow: 0 18px 45px rgba(0,0,0,.30) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  overflow: hidden !important;
+  color: #151313 !important;
+  z-index: 10 !important;
 }
 
-.brand-header .brand-logo,
-.site-header.scrolled .brand-header .brand-logo {
-  object-fit: contain !important;
-  object-position: center !important;
-  background: transparent !important;
-}
-
-/* =========================================================
-   MAP LOGO CARD — SQUARE WHITE CARD
-   ========================================================= */
-.map-pin {
-  width: 180px !important;
-  height: auto !important;
-  min-height: 210px;
-  padding: 18px 16px 16px;
-  border-radius: 0 !important;
-  background: #ffffff !important;
-  border: 2px solid rgba(21, 19, 19, .72);
-  box-shadow: 0 18px 42px rgba(0, 0, 0, .25) !important;
-  display: grid !important;
-  place-items: center !important;
-  align-content: center !important;
-  gap: 8px !important;
-  color: var(--ink) !important;
-  overflow: visible !important;
-}
-
-.map-pin img {
+.visit-map .map-pin.map-brand-card img {
+  display: block !important;
   width: 112px !important;
   height: 112px !important;
   object-fit: contain !important;
-  object-position: center !important;
   border-radius: 0 !important;
   clip-path: none !important;
   filter: none !important;
+  flex: 0 0 auto !important;
 }
 
-.map-pin b {
+.visit-map .map-pin.map-brand-card b {
   display: block !important;
-  color: var(--ink) !important;
-  font-size: 24px !important;
-  line-height: 1.1 !important;
+  margin: 0 !important;
+  color: #151313 !important;
+  font-size: 23px !important;
+  line-height: 1 !important;
   font-weight: 700 !important;
 }
 
-.map-pin small {
+.visit-map .map-pin.map-brand-card small {
   display: block !important;
-  color: var(--ink) !important;
-  opacity: .72 !important;
+  margin: 0 !important;
+  color: #151313 !important;
+  opacity: .75 !important;
+  font-family: "Manrope", sans-serif !important;
   font-size: 7px !important;
-  letter-spacing: .16em !important;
+  line-height: 1 !important;
+  letter-spacing: .14em !important;
 }
 
 @media (max-width: 780px) {
-  .map-pin {
-    width: 155px !important;
-    min-height: 185px;
-    padding: 15px 13px 13px;
+  .visit-map .map-pin.map-brand-card {
+    width: 165px !important;
+    height: 195px !important;
+    padding: 14px 12px !important;
   }
 
-  .map-pin img {
-    width: 94px !important;
-    height: 94px !important;
+  .visit-map .map-pin.map-brand-card img {
+    width: 96px !important;
+    height: 96px !important;
   }
 
-  .map-pin b {
+  .visit-map .map-pin.map-brand-card b {
     font-size: 21px !important;
   }
 }
