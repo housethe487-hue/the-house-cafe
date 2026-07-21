@@ -698,7 +698,8 @@ h1, h2, h3, .brand-copy strong, .map-pin b, .cup-brand-name {
   aspect-ratio: 1;
   object-fit: contain;
   object-position: center;
-  border-radius: 50%;
+  border-radius: 0;
+  clip-path: none;
   filter: drop-shadow(0 8px 18px rgba(244, 91, 69, .18));
 }
 
@@ -757,4 +758,24 @@ h1, h2, h3, .brand-copy strong, .map-pin b, .cup-brand-name {
     width: 48px;
     height: 48px;
   }
+}
+
+/* =========================================================
+   HEADER LOGO — SQUARE, NOT CIRCULAR
+   ========================================================= */
+.brand-header,
+.brand-header .brand-logo,
+.site-header.scrolled .brand-header .brand-logo {
+  border-radius: 0 !important;
+  clip-path: none !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  overflow: visible !important;
+}
+
+.brand-header .brand-logo,
+.site-header.scrolled .brand-header .brand-logo {
+  object-fit: contain !important;
+  object-position: center !important;
+  background: transparent !important;
 }
