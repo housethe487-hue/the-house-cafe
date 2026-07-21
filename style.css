@@ -687,19 +687,38 @@ h1, h2, h3, .brand-copy strong, .map-pin b, .cup-brand-name {
   }
 }
 
-
 /* =========================================================
-   EXACT CIRCULAR BRAND BADGE — supplied by the client
+   FINAL CLEAN BRAND + VISIT SECTION
    ========================================================= */
+
+/* الشعار العلوي والسفلي: مربع بدون قص دائري */
+.brand-header,
+.footer-brand {
+  padding: 0;
+  gap: 0;
+  flex: 0 0 auto;
+  overflow: visible;
+}
+
 .brand-logo {
+  display: block;
   width: 68px;
   height: 68px;
   max-height: none;
   aspect-ratio: 1;
   object-fit: contain;
   object-position: center;
-  border-radius: 50%;
-  filter: drop-shadow(0 8px 18px rgba(244, 91, 69, .18));
+  border: 0;
+  border-radius: 0;
+  clip-path: none;
+  background: transparent;
+  filter: drop-shadow(0 7px 16px rgba(21, 19, 19, .10));
+  transition: transform .25s var(--ease), opacity .25s ease;
+}
+
+.brand-header:hover .brand-logo,
+.footer-brand:hover .brand-logo {
+  transform: translateY(-1px);
 }
 
 .site-header.scrolled .brand-logo {
@@ -710,31 +729,270 @@ h1, h2, h3, .brand-copy strong, .map-pin b, .cup-brand-name {
 .footer-brand-logo {
   width: 112px;
   height: 112px;
-  max-height: none;
 }
 
 .cup-brand img {
   width: 62px;
   height: 62px;
-  border-radius: 50%;
   object-fit: contain;
-}
-
-.map-pin {
-  width: 190px;
-  height: 220px;
   border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-  gap: 7px;
+  clip-path: none;
 }
 
-.map-pin img {
-  width: 132px;
-  height: 132px;
-  border-radius: 50%;
+/* قسم الموقع — توزيع متوازن بدون قص أو خروج النص */
+.visit {
+  padding-block: clamp(88px, 9vw, 130px);
+}
+
+.visit-panel {
+  width: 100%;
+  min-height: 620px;
+  display: grid;
+  grid-template-columns: minmax(380px, .88fr) minmax(0, 1.12fr);
+  overflow: hidden;
+  border-radius: 30px;
+  background: var(--ink);
+  color: #fff;
+  box-shadow: 0 28px 80px rgba(21, 19, 19, .18);
+}
+
+.visit-copy {
+  min-width: 0;
+  padding: clamp(44px, 5vw, 72px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: right;
+  position: relative;
+  isolation: isolate;
+}
+
+.visit-copy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 92% 10%, rgba(244, 91, 69, .16), transparent 34%),
+    linear-gradient(145deg, rgba(255,255,255,.025), transparent 48%);
+}
+
+.visit-copy .eyebrow {
+  margin-bottom: 24px;
+}
+
+.visit-copy h2 {
+  max-width: 520px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(48px, 4.6vw, 68px);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: 0;
+  overflow-wrap: normal;
+}
+
+.visit-copy > p:not(.eyebrow) {
+  max-width: 500px;
+  margin: 26px 0 32px;
+  color: rgba(255,255,255,.62);
+  font-size: 15px;
+  line-height: 2;
+}
+
+.visit-actions {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+
+.visit-actions .button-light {
+  min-width: 150px;
+}
+
+.visit-map {
+  min-width: 0;
+  min-height: 620px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(244, 91, 69, .09), transparent 29%),
+    #1b1918;
+  border-inline-start: 1px solid rgba(255,255,255,.07);
+}
+
+.visit-map::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, transparent 55%, rgba(0,0,0,.18));
+}
+
+.map-grid {
+  position: absolute;
+  inset: -12%;
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+  background-size: 54px 54px;
+  transform: rotate(-8deg) scale(1.18);
+}
+
+.map-road {
+  position: absolute;
+  background: rgba(247,241,233,.14);
+  border: 1px solid rgba(255,255,255,.055);
+  border-radius: 999px;
+}
+
+.road-one {
+  width: 132%;
+  height: 42px;
+  left: -20%;
+  top: 31%;
+  transform: rotate(-13deg);
+}
+
+.road-two {
+  width: 105%;
+  height: 32px;
+  left: 18%;
+  top: 53%;
+  transform: rotate(49deg);
+}
+
+.road-three {
+  width: 82%;
+  height: 27px;
+  left: -8%;
+  top: 74%;
+  transform: rotate(9deg);
+}
+
+/* بطاقة الشعار داخل الخريطة */
+.visit-map .map-pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 5;
+  transform: translate(-50%, -50%);
+  width: 190px;
+  min-height: 220px;
+  padding: 20px 17px 17px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  overflow: hidden;
+  text-align: center;
+  color: var(--ink);
+  background: var(--cream-2);
+  border: 1px solid rgba(21,19,19,.40);
+  border-radius: 0;
+  box-shadow:
+    0 22px 55px rgba(0,0,0,.32),
+    inset 0 0 0 1px rgba(255,255,255,.70);
+}
+
+.visit-map .map-pin::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  pointer-events: none;
+  border: 1px solid rgba(21,19,19,.09);
+}
+
+.visit-map .map-pin img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 110px;
+  height: 110px;
+  max-width: none;
+  flex: 0 0 auto;
   object-fit: contain;
-  filter: drop-shadow(0 14px 30px rgba(244, 91, 69, .28));
+  object-position: center;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  clip-path: none;
+  filter: none;
+}
+
+.visit-map .map-pin b {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.visit-map .map-pin small {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin: 0;
+  color: var(--ink);
+  opacity: .65;
+  font-family: var(--font-latin);
+  font-size: 7px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: .14em;
+}
+
+.map-label {
+  z-index: 3;
+  position: absolute;
+  padding: 7px 10px;
+  color: rgba(255,255,255,.55);
+  background: rgba(0,0,0,.26);
+  border: 1px solid rgba(255,255,255,.05);
+  border-radius: 8px;
+  font-size: 10px;
+  backdrop-filter: blur(6px);
+}
+
+.label-a {
+  right: 13%;
+  top: 17%;
+}
+
+.label-b {
+  left: 12%;
+  bottom: 15%;
+}
+
+@media (max-width: 1060px) {
+  .visit-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .visit-copy {
+    min-height: 480px;
+  }
+
+  .visit-copy h2 {
+    max-width: 620px;
+    font-size: clamp(48px, 7vw, 66px);
+  }
+
+  .visit-map {
+    min-height: 520px;
+    border-inline-start: 0;
+    border-top: 1px solid rgba(255,255,255,.07);
+  }
 }
 
 @media (max-width: 780px) {
@@ -742,12 +1000,76 @@ h1, h2, h3, .brand-copy strong, .map-pin b, .cup-brand-name {
   .site-header.scrolled .brand-logo {
     width: 54px;
     height: 54px;
-    max-height: none;
   }
 
   .footer-brand-logo {
     width: 96px;
     height: 96px;
+  }
+
+  .visit {
+    padding-block: 92px;
+  }
+
+  .visit-panel {
+    min-height: 0;
+    border-radius: 24px;
+  }
+
+  .visit-copy {
+    min-height: 0;
+    padding: 44px 24px 40px;
+  }
+
+  .visit-copy h2 {
+    max-width: 100%;
+    font-size: clamp(42px, 11.5vw, 56px);
+    line-height: 1.16;
+  }
+
+  .visit-copy > p:not(.eyebrow) {
+    margin: 22px 0 28px;
+    font-size: 14px;
+  }
+
+  .visit-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .visit-actions .button,
+  .visit-actions .text-link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .visit-map {
+    min-height: 430px;
+  }
+
+  .visit-map .map-pin {
+    width: 158px;
+    min-height: 184px;
+    padding: 15px 13px 13px;
+  }
+
+  .visit-map .map-pin img {
+    width: 92px;
+    height: 92px;
+  }
+
+  .visit-map .map-pin b {
+    font-size: 20px;
+  }
+
+  .label-a {
+    right: 7%;
+    top: 12%;
+  }
+
+  .label-b {
+    left: 7%;
+    bottom: 10%;
   }
 }
 
@@ -757,174 +1079,22 @@ h1, h2, h3, .brand-copy strong, .map-pin b, .cup-brand-name {
     width: 48px;
     height: 48px;
   }
-}
 
-/* ===== FINAL LOCATION LOGO FIX ===== */
-.visit-map .map-pin.map-brand-card {
-  position: absolute !important;
-  left: 50% !important;
-  top: 50% !important;
-  transform: translate(-50%, -50%) rotate(-3deg) !important;
-  width: 190px !important;
-  height: 220px !important;
-  padding: 18px 16px 15px !important;
-  box-sizing: border-box !important;
-  border: 2px solid rgba(21,19,19,.70) !important;
-  border-radius: 0 !important;
-  background: #fffaf4 !important;
-  box-shadow: 0 18px 45px rgba(0,0,0,.30) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 7px !important;
-  overflow: hidden !important;
-  color: #151313 !important;
-  z-index: 10 !important;
-}
-
-.visit-map .map-pin.map-brand-card img {
-  display: block !important;
-  width: 112px !important;
-  height: 112px !important;
-  object-fit: contain !important;
-  border-radius: 0 !important;
-  clip-path: none !important;
-  filter: none !important;
-  flex: 0 0 auto !important;
-}
-
-.visit-map .map-pin.map-brand-card b {
-  display: block !important;
-  margin: 0 !important;
-  color: #151313 !important;
-  font-size: 23px !important;
-  line-height: 1 !important;
-  font-weight: 700 !important;
-}
-
-.visit-map .map-pin.map-brand-card small {
-  display: block !important;
-  margin: 0 !important;
-  color: #151313 !important;
-  opacity: .75 !important;
-  font-family: "Manrope", sans-serif !important;
-  font-size: 7px !important;
-  line-height: 1 !important;
-  letter-spacing: .14em !important;
-}
-
-@media (max-width: 780px) {
-  .visit-map .map-pin.map-brand-card {
-    width: 165px !important;
-    height: 195px !important;
-    padding: 14px 12px !important;
+  .visit-copy h2 {
+    font-size: 43px;
   }
 
-  .visit-map .map-pin.map-brand-card img {
-    width: 96px !important;
-    height: 96px !important;
+  .visit-map {
+    min-height: 390px;
   }
 
-  .visit-map .map-pin.map-brand-card b {
-    font-size: 21px !important;
-  }
-}
-
-/* =========================================================
-   REAL CSS-ONLY FIX — LOCATION LOGO CARD
-   لا يحتاج أي تعديل على index.html
-   ========================================================= */
-.visit-map .map-pin {
-  position: absolute !important;
-  left: 50% !important;
-  top: 50% !important;
-  transform: translate(-50%, -50%) rotate(-3deg) !important;
-
-  width: 190px !important;
-  height: 220px !important;
-  padding: 18px 16px 15px !important;
-  box-sizing: border-box !important;
-
-  background: #fffaf4 !important;
-  border: 2px solid rgba(21, 19, 19, .72) !important;
-  border-radius: 0 !important;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, .30) !important;
-
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 8px !important;
-
-  color: #151313 !important;
-  text-align: center !important;
-  overflow: hidden !important;
-  z-index: 10 !important;
-}
-
-.visit-map .map-pin img {
-  display: block !important;
-  width: 112px !important;
-  height: 112px !important;
-  max-width: none !important;
-
-  object-fit: contain !important;
-  object-position: center !important;
-
-  background: transparent !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  clip-path: none !important;
-  filter: none !important;
-}
-
-.visit-map .map-pin b {
-  display: block !important;
-  margin: 0 !important;
-
-  color: #151313 !important;
-  font-size: 24px !important;
-  font-weight: 700 !important;
-  line-height: 1.05 !important;
-}
-
-.visit-map .map-pin small {
-  display: block !important;
-  margin: 0 !important;
-
-  color: #151313 !important;
-  opacity: .72 !important;
-
-  font-size: 0 !important;
-  line-height: 1 !important;
-}
-
-.visit-map .map-pin small::after {
-  content: "THE HOUSE CAFE";
-  display: block;
-
-  font-family: "Manrope", sans-serif !important;
-  font-size: 7px !important;
-  font-weight: 700 !important;
-  letter-spacing: .14em !important;
-  line-height: 1 !important;
-  color: #151313 !important;
-}
-
-@media (max-width: 780px) {
   .visit-map .map-pin {
-    width: 165px !important;
-    height: 195px !important;
-    padding: 14px 12px !important;
+    width: 148px;
+    min-height: 174px;
   }
 
   .visit-map .map-pin img {
-    width: 96px !important;
-    height: 96px !important;
-  }
-
-  .visit-map .map-pin b {
-    font-size: 21px !important;
+    width: 86px;
+    height: 86px;
   }
 }
