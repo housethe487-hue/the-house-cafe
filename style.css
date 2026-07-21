@@ -1167,3 +1167,76 @@ h1, h2, h3, .brand-copy strong, .map-pin b, .cup-brand-name {
     height: 72px !important;
   }
 }
+
+/* =========================================================
+   LOCATION — LOGO ONLY, NO BACKGROUND
+   ========================================================= */
+.visit-map .map-pin {
+  width: 190px !important;
+  height: 190px !important;
+  min-height: 190px !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+
+  display: grid !important;
+  place-items: center !important;
+  overflow: visible !important;
+}
+
+/* إزالة أي إطار أو خلفية إضافية */
+.visit-map .map-pin::before,
+.visit-map .map-pin::after {
+  display: none !important;
+}
+
+/* إظهار صورة الشعار فقط */
+.visit-map .map-pin img {
+  display: block !important;
+  width: 180px !important;
+  height: 180px !important;
+  max-width: none !important;
+  margin: 0 !important;
+
+  object-fit: contain !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+/* إخفاء النصوص الموجودة تحت الشعار */
+.visit-map .map-pin b,
+.visit-map .map-pin small {
+  display: none !important;
+}
+
+@media (max-width: 780px) {
+  .visit-map .map-pin {
+    width: 155px !important;
+    height: 155px !important;
+    min-height: 155px !important;
+  }
+
+  .visit-map .map-pin img {
+    width: 150px !important;
+    height: 150px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .visit-map .map-pin {
+    width: 140px !important;
+    height: 140px !important;
+    min-height: 140px !important;
+  }
+
+  .visit-map .map-pin img {
+    width: 135px !important;
+    height: 135px !important;
+  }
+}
