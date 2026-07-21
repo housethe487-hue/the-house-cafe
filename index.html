@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f45b45" />
+  <meta name="description" content="ذا هاوس كافيه — تجربة قهوة عصرية في شفا بدران، عمّان." />
+  <meta property="og:title" content="ذا هاوس كافيه | The House Café" />
+  <meta property="og:description" content="قهوة، جلسات، مباريات، ومنيو مصمم لكل مزاج." />
+  <meta property="og:type" content="website" />
+  <title>ذا هاوس كافيه | The House Café</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Readex+Pro:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-progress" aria-hidden="true"><span></span></div>
+  <div class="grain" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">انتقل إلى المحتوى</a>
+
+  <header class="site-header" id="siteHeader">
+    <a class="brand brand-header" href="#home" aria-label="ذا هاوس كافيه - الرئيسية">
+      <img class="brand-logo" src="assets/logo-badge.png?v=5" alt="شعار ذا هاوس" width="512" height="512" />
+    </a>
+
+    <nav class="desktop-nav" aria-label="التنقل الرئيسي">
+      <a href="#experience">التجربة</a>
+      <a href="#menu">المنيو</a>
+      <a href="#moods">مزاجك</a>
+      <a href="#visit">الموقع</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-button menu-image-trigger" type="button" aria-label="عرض المنيو الأصلية" title="المنيو الأصلية">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg>
+      </button>
+      <a class="header-cta" href="#menu">اختَر طلبك</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-controls="mobileMenu" aria-expanded="false" aria-label="فتح القائمة">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav aria-label="قائمة الهاتف">
+      <a href="#home"><span>01</span>الرئيسية</a>
+      <a href="#experience"><span>02</span>التجربة</a>
+      <a href="#menu"><span>03</span>المنيو</a>
+      <a href="#moods"><span>04</span>مزاجك</a>
+      <a href="#visit"><span>05</span>الموقع</a>
+    </nav>
+    <p>شفا بدران، شارع رفعت شموط، مجمع حمّاد</p>
+  </div>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="hero-rings" aria-hidden="true"></div>
+      <div class="hero-copy" data-reveal>
+        <p class="eyebrow"><span></span> قهوة&nbsp;&nbsp;/&nbsp;&nbsp;مزاج&nbsp;&nbsp;/&nbsp;&nbsp;تجربة</p>
+        <h1>
+          <span>مش بس</span>
+          <strong>قهوة.</strong>
+          <em>هذا مزاج كامل.</em>
+        </h1>
+        <p class="hero-lead">مساحة تتحوّل مع يومك: هدوء للدراسة، أجواء للمباريات، وقعدة طويلة مع الناس الصح.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#menu">اكتشف المنيو</a>
+          <a class="text-link" href="#visit">خطّط لزيارتك <span>↙</span></a>
+        </div>
+        <div class="hero-meta" aria-label="معلومات مختصرة">
+          <div><span>الموقع</span><strong>شفا بدران، عمّان</strong></div>
+          <div><span>الدوام</span><strong>يوميًا 3م — 2ص</strong></div>
+        </div>
+      </div>
+
+      <div class="hero-stage hero-product-stage" data-reveal data-delay="120">
+        <div class="stage-label">HOUSE SIGNATURE <i></i></div>
+        <div class="product-halo" aria-hidden="true"></div>
+        <img
+          class="hero-product-image"
+          src="assets/house-signature-cutout.webp?v=1"
+          alt="مشروب هاوس سيغنتشر من ذا هاوس كافيه"
+          width="656"
+          height="1450"
+        />
+      </div>
+
+      <a class="scroll-cue" href="#experience" aria-label="مرّر للأسفل">
+        <span>SCROLL TO ENTER</span><i></i>
+      </a>
+    </section>
+
+    <section class="ticker" aria-label="أبرز التجربة">
+      <div class="ticker-track">
+        <span>COFFEE THAT MATCHES YOUR MOOD</span><i></i>
+        <span>STUDY HOUSE</span><i></i>
+        <span>LIVE MATCH NIGHTS</span><i></i>
+        <span>FAMILY SPACE</span><i></i>
+        <span>COFFEE THAT MATCHES YOUR MOOD</span><i></i>
+        <span>STUDY HOUSE</span><i></i>
+        <span>LIVE MATCH NIGHTS</span><i></i>
+        <span>FAMILY SPACE</span><i></i>
+      </div>
+    </section>
+
+    <section class="experience section-shell" id="experience">
+      <div class="section-intro" data-reveal>
+        <p class="eyebrow"><span></span> THE HOUSE EXPERIENCE</p>
+        <h2>كل زاوية<br />مصممة لسبب.</h2>
+        <p>الهوية هنا لا تعتمد على صور قهوة تقليدية. الخطوط، الحركة، والمساحات كلها مأخوذة من بصمة الشعار الدائرية ومن لون الكافيه المرجاني.</p>
+      </div>
+
+      <div class="experience-grid">
+        <article class="experience-card card-study" data-reveal>
+          <div class="card-index">01</div>
+          <div class="study-visual" aria-hidden="true">
+            <div class="desk-line"></div><div class="lamp"></div><div class="screen"></div>
+          </div>
+          <div class="card-copy"><span>STUDY MODE</span><h3>تركيز بدون عزلة.</h3><p>جلسة هادئة، مشروب مضبوط، ومساحة تساعدك تخلّص شغلك.</p></div>
+        </article>
+
+        <article class="experience-card card-match" data-reveal data-delay="100">
+          <div class="card-index">02</div>
+          <div class="scoreboard" aria-hidden="true"><b>90:00</b><span>HOUSE NIGHT</span><strong>2 — 1</strong></div>
+          <div class="card-copy"><span>MATCH MODE</span><h3>المباراة إلها بيت.</h3><p>ليالي المباريات تتحول فيها القعدة إلى جمهور واحد.</p></div>
+        </article>
+
+        <article class="experience-card card-social" data-reveal data-delay="200">
+          <div class="card-index">03</div>
+          <div class="social-visual" aria-hidden="true"><i></i><i></i><i></i><b>+</b></div>
+          <div class="card-copy"><span>SOCIAL MODE</span><h3>قعدة تكمل لحالها.</h3><p>من أول فنجان لآخر حكاية، المكان واسع للوقت الحلو.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="menu-section" id="menu">
+      <div class="menu-top section-shell">
+        <div data-reveal>
+          <p class="eyebrow light"><span></span> INTERACTIVE MENU</p>
+          <h2>منيو تتحرك<br />مع اختيارك.</h2>
+        </div>
+        <div class="menu-tools" data-reveal data-delay="100">
+          <label class="menu-search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+            <input id="menuSearch" type="search" placeholder="ابحث عن مشروب أو صنف" autocomplete="off" />
+          </label>
+          <button class="outline-button menu-image-trigger" type="button">المنيو الأصلية</button>
+        </div>
+      </div>
+
+      <div class="menu-browser section-shell" data-reveal>
+        <div class="category-tabs" id="categoryTabs" role="tablist" aria-label="فئات المنيو"></div>
+        <div class="menu-summary">
+          <p id="menuSummary">اختر فئة لعرض الأصناف.</p>
+          <span id="menuCount">0 صنف</span>
+        </div>
+        <div class="menu-list" id="menuList" aria-live="polite"></div>
+        <div class="menu-empty" id="menuEmpty" hidden>
+          <strong>لا يوجد صنف مطابق.</strong>
+          <p>جرّب كلمة أخرى أو اختر فئة مختلفة.</p>
+        </div>
+      </div>
+
+      <div class="signature-strip section-shell">
+        <article class="signature-item" data-reveal>
+          <div class="signature-art coral"><span>H</span></div>
+          <div><span>HOUSE ORIGINAL</span><h3>هاوس لاتيه</h3><p>مشروب التوقيع الذي يبدأ منه طابع المكان.</p></div>
+          <strong>3.50 <small>JD</small></strong>
+        </article>
+        <article class="signature-item" data-reveal data-delay="100">
+          <div class="signature-art blue"><span>M</span></div>
+          <div><span>FRESH & BRIGHT</span><h3>موهيتو بلو أوشن</h3><p>بارد، واضح، ومصمم للمساءات الطويلة.</p></div>
+          <strong>2.75 <small>JD</small></strong>
+        </article>
+        <article class="signature-item" data-reveal data-delay="200">
+          <div class="signature-art cream"><span>F</span></div>
+          <div><span>HOUSE BLEND</span><h3>فراب اللوز</h3><p>قوام غني مع نهاية ناعمة ومتوازنة.</p></div>
+          <strong>3.50 <small>JD</small></strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="mood-section section-shell" id="moods">
+      <div class="mood-copy" data-reveal>
+        <p class="eyebrow"><span></span> FIND YOUR MODE</p>
+        <h2>شو مودك<br />اليوم؟</h2>
+        <p id="moodDescription">اختَر مزاجك، وخلي الموقع يقترح عليك التجربة المناسبة.</p>
+        <div class="mood-pills" id="moodPills" role="tablist" aria-label="اختيار المزاج">
+          <button class="active" data-mood="focus" type="button">تركيز</button>
+          <button data-mood="fresh" type="button">انتعاش</button>
+          <button data-mood="social" type="button">قعدة</button>
+          <button data-mood="late" type="button">سهر</button>
+        </div>
+      </div>
+
+      <div class="mood-dial-wrap" data-reveal data-delay="120">
+        <div class="mood-dial" id="moodDial">
+          <div class="dial-rings" aria-hidden="true"></div>
+          <div class="dial-center">
+            <small>YOUR PICK</small>
+            <strong id="moodTitle">تركيز</strong>
+            <span id="moodPick">فلات وايت</span>
+            <b id="moodPrice">2.00 JD</b>
+          </div>
+          <div class="dial-marker marker-one">01</div>
+          <div class="dial-marker marker-two">02</div>
+          <div class="dial-marker marker-three">03</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hookah-note">
+      <div class="section-shell hookah-inner" data-reveal>
+        <div>
+          <p class="eyebrow light"><span></span> HOOKAH SELECTION</p>
+          <h2>نكهات واضحة.<br />اختيارات كثيرة.</h2>
+        </div>
+        <div class="hookah-copy">
+          <p>قسم الأراجيل موجود ضمن المنيو مع خيارات تبدأ من 3.00 دنانير، وتجديد الرأس بسعر 2.00 دينار.</p>
+          <small>يُقدّم وفق القوانين والتعليمات المعمول بها وللبالغين فقط.</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit section-shell" id="visit">
+      <div class="visit-panel" data-reveal>
+        <div class="visit-copy">
+          <p class="eyebrow light"><span></span> COME HOME</p>
+          <h2>موعدنا<br />في ذا هاوس.</h2>
+          <p>شفا بدران، شارع رفعت شموط، مجمع حمّاد. يوميًا من الساعة 3:00 عصرًا حتى 2:00 صباحًا.</p>
+          <div class="visit-actions">
+            <a class="button button-light" href="https://www.google.com/maps/search/?api=1&query=32.0452162%2C35.923683" target="_blank" rel="noopener">افتح الموقع</a>
+            <a class="text-link light-link" href="https://www.instagram.com/house.amman.cafe/" target="_blank" rel="noopener">Instagram <span>↗</span></a>
+          </div>
+        </div>
+        <div class="visit-map" aria-label="رسم توضيحي لموقع ذا هاوس كافيه">
+          <div class="map-grid" aria-hidden="true"></div>
+          <div class="map-road road-one"></div><div class="map-road road-two"></div><div class="map-road road-three"></div>
+          <div class="map-pin" aria-label="ذا هاوس كافيه">
+            <img src="assets/logo-badge.png?v=5" alt="شعار ذا هاوس" />
+            <b>ذا هاوس</b>
+            <small>THE HOUSE CAFE</small>
+          </div>
+          <span class="map-label label-a">شارع رفعت شموط</span>
+          <span class="map-label label-b">شفا بدران</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main section-shell">
+      <a class="brand footer-brand" href="#home" aria-label="ذا هاوس كافيه">
+        <img class="brand-logo footer-brand-logo" src="assets/logo-badge.png?v=5" alt="شعار ذا هاوس" width="512" height="512" loading="lazy" />
+      </a>
+      <div class="footer-statement">THE PLACE<br />YOUR MOOD<br />CALLS HOME.</div>
+      <div class="footer-links">
+        <a href="#menu">المنيو</a>
+        <a href="#experience">التجربة</a>
+        <a href="#visit">الموقع</a>
+        <a href="https://www.instagram.com/house.amman.cafe/" target="_blank" rel="noopener">إنستغرام</a>
+      </div>
+    </div>
+    <div class="footer-bottom section-shell">
+      <span>© <span id="year"></span> THE HOUSE CAFÉ</span>
+      <span>AMMAN / JORDAN</span>
+      <button type="button" class="menu-image-trigger">عرض قائمة الأسعار الأصلية</button>
+    </div>
+  </footer>
+
+  <nav class="mobile-dock" aria-label="اختصارات الهاتف">
+    <a href="#home" aria-label="الرئيسية"><svg viewBox="0 0 24 24"><path d="m4 11 8-7 8 7v9h-6v-6h-4v6H4z"/></svg><span>الرئيسية</span></a>
+    <a href="#menu" aria-label="المنيو"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg><span>المنيو</span></a>
+    <a href="#visit" aria-label="الموقع"><svg viewBox="0 0 24 24"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg><span>الموقع</span></a>
+  </nav>
+
+  <dialog class="menu-modal" id="menuModal" aria-labelledby="menuModalTitle">
+    <div class="modal-head">
+      <div><small>ORIGINAL MENU</small><h2 id="menuModalTitle">قائمة الأسعار الأصلية</h2></div>
+      <button id="closeMenuModal" type="button" aria-label="إغلاق"><span></span><span></span></button>
+    </div>
+    <div class="modal-image-wrap"><img src="assets/the-house-menu.jpg" alt="قائمة مشروبات وأراجيل ذا هاوس كافيه" /></div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
