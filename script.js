@@ -233,72 +233,169 @@ function buildTabs() {
 
 function renderMenu() {
   const query = els.menuSearch.value.trim().toLowerCase();
-  const category = menuData.find(item => item.id === activeCategory) || menuData[0];
-  const visibleItems = category.items.filter(([name, , description]) =>
-    `${name} ${description}`.toLowerCase().includes(query)
+
+  const category =
+    menuData.find(item => item.id === activeCategory) || menuData[0];
+
+  const visibleItems = category.items.filter(
+    ([name, , description]) =>
+      `${name} ${description}`.toLowerCase().includes(query)
   );
 
   els.menuSummary.textContent = query
     ? `نتائج البحث داخل ${category.label}`
     : category.summary;
+
   els.menuCount.textContent = `${visibleItems.length} صنف`;
   els.menuEmpty.hidden = visibleItems.length !== 0;
   els.menuList.hidden = visibleItems.length === 0;
 
-  els.menuList.innerHTML = visibleItems.map(([name, price, description]) => `
-    <article class="menu-item">
-      <div>
-        <h3>${name}</h3>
-        <p>${description}</p>
-      </div>
-      <strong>${formatPrice(price)} <small>JD</small></strong>
-    </article>
-  `).join("");
+  els.menuList.innerHTML = visibleItems.map(
+    ([name, price, description]) => `
+      <article class="menu-item">
+        <div>
+          <h3>${name}</h3>
+          <p>${description}</p>
+        </div>
+
+        <strong>
+          ${formatPrice(price)}
+          <small>JD</small>
+        </strong>
+      </article>
+    `
+  ).join("");
 }
 
 function setCategory(categoryId) {
   activeCategory = categoryId;
+
   [...els.categoryTabs.querySelectorAll("button")].forEach(button => {
     const active = button.dataset.category === categoryId;
+
     button.classList.toggle("active", active);
-    button.setAttribute("aria-selected", active ? "true" : "false");
+    button.setAttribute(
+      "aria-selected",
+      active ? "true" : "false"
+    );
   });
+
   renderMenu();
 }
 
 function setMood(key) {
   const mood = moods[key];
+
   if (!mood) return;
 
   [...els.moodPills.querySelectorAll("button")].forEach(button => {
-    button.classList.toggle("active", button.dataset.mood === key);
+    const active = button.dataset.mood === key;
+
+    button.classList.toggle("active", active);
+    button.setAttribute(
+      "aria-selected",
+      active ? "true" : "false"
+    );
   });
+
+  document.body.dataset.mood = key;
 
   els.moodDial.style.background = mood.color;
   els.moodTitle.textContent = mood.title;
   els.moodPick.textContent = mood.pick;
   els.moodPrice.textContent = mood.price;
   els.moodDescription.textContent = mood.description;
-  els.moodDial.animate(
-    [
-      { transform: "scale(.97) rotate(-1.2deg)" },
-      { transform: "scale(1.01) rotate(.5deg)" },
-      { transform: "scale(1) rotate(0)" }
-    ],
-    { duration: 520, easing: "cubic-bezier(.2,.75,.2,1)" }
+
+  if (typeof els.moodDial.animate === "function") {
+    els.moodDial.animate(
+      [
+        {
+          transform: "scale(.97) rotate(-1.2deg)"
+        },
+        {
+          transform: "scale(1.01) rotate(.5deg)"
+        },
+        {
+          transform: "scale(1) rotate(0)"
+        }
+      ],
+      {
+        duration: 520,
+        easing: "cubic-bezier(.2,.75,.2,1)"
+      }
+    );
+  }
+}
+
+/* تحديد مود الموقع حسب توقيت الأردن */
+
+function getJordanHour() {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Amman",
+    hour: "2-digit",
+    hourCycle: "h23"
+  }).formatToParts(new Date());
+
+  const hourPart = parts.find(
+    part => part.type === "hour"
   );
+
+  return Number(hourPart?.value ?? 0);
+}
+
+function getJordanMood() {
+  const hour = getJordanHour();
+
+  // من 8 صباحًا إلى قبل 2 ظهرًا
+  if (hour >= 8 && hour < 14) {
+    return "fresh";
+  }
+
+  // من 2 ظهرًا إلى قبل 10 مساءً
+  if (hour >= 14 && hour < 22) {
+    return "focus";
+  }
+
+  // من 10 مساءً إلى قبل 8 صباحًا
+  return "late";
+}
+
+function applyJordanMood() {
+  const mood = getJordanMood();
+
+  const activeMood =
+    els.moodPills
+      .querySelector("button.active")
+      ?.dataset.mood;
+
+  if (activeMood !== mood) {
+    setMood(mood);
+  }
 }
 
 function toggleMobileMenu(force) {
-  const nextState = typeof force === "boolean"
-    ? force
-    : !els.mobileMenu.classList.contains("open");
+  const nextState =
+    typeof force === "boolean"
+      ? force
+      : !els.mobileMenu.classList.contains("open");
 
   els.mobileMenu.classList.toggle("open", nextState);
   els.navToggle.classList.toggle("active", nextState);
-  els.navToggle.setAttribute("aria-expanded", String(nextState));
-  els.mobileMenu.setAttribute("aria-hidden", String(!nextState));
-  document.body.classList.toggle("menu-open", nextState);
+
+  els.navToggle.setAttribute(
+    "aria-expanded",
+    String(nextState)
+  );
+
+  els.mobileMenu.setAttribute(
+    "aria-hidden",
+    String(!nextState)
+  );
+
+  document.body.classList.toggle(
+    "menu-open",
+    nextState
+  );
 }
 
 function openMenuModal() {
@@ -318,94 +415,234 @@ function closeMenuModal() {
 }
 
 function setupReveal() {
-  const elements = document.querySelectorAll("[data-reveal]");
+  const elements =
+    document.querySelectorAll("[data-reveal]");
+
   elements.forEach(element => {
-    element.style.setProperty("--delay", `${Number(element.dataset.delay || 0)}ms`);
+    element.style.setProperty(
+      "--delay",
+      `${Number(element.dataset.delay || 0)}ms`
+    );
   });
 
   if (!("IntersectionObserver" in window)) {
-    elements.forEach(element => element.classList.add("revealed"));
+    elements.forEach(element => {
+      element.classList.add("revealed");
+    });
+
     return;
   }
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("revealed");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: .14, rootMargin: "0px 0px -40px" });
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.14,
+      rootMargin: "0px 0px -40px"
+    }
+  );
 
-  elements.forEach(element => observer.observe(element));
+  elements.forEach(element => {
+    observer.observe(element);
+  });
 }
 
 function updateScrollUI() {
   const scrollTop = window.scrollY;
-  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = maxScroll > 0 ? (scrollTop / maxScroll) * 100 : 0;
-  document.querySelector(".page-progress span").style.width = `${progress}%`;
-  els.header.classList.toggle("scrolled", scrollTop > 30);
+
+  const maxScroll =
+    document.documentElement.scrollHeight -
+    window.innerHeight;
+
+  const progress =
+    maxScroll > 0
+      ? (scrollTop / maxScroll) * 100
+      : 0;
+
+  const progressBar =
+    document.querySelector(".page-progress span");
+
+  if (progressBar) {
+    progressBar.style.width = `${progress}%`;
+  }
+
+  els.header.classList.toggle(
+    "scrolled",
+    scrollTop > 30
+  );
 }
 
 function setupCupMotion() {
-  const stage = els.cupScene?.closest(".hero-stage");
-  if (!stage || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const stage =
+    els.cupScene?.closest(".hero-stage");
+
+  const reducedMotion =
+    window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+  if (!stage || reducedMotion) return;
 
   stage.addEventListener("pointermove", event => {
     const rect = stage.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - .5;
-    const y = (event.clientY - rect.top) / rect.height - .5;
-    els.cupScene.style.transform = `translate(-50%,-47%) rotate(${-4 + x * 5}deg) rotateX(${y * -8}deg) rotateY(${x * 10}deg)`;
+
+    const x =
+      (event.clientX - rect.left) /
+      rect.width -
+      0.5;
+
+    const y =
+      (event.clientY - rect.top) /
+      rect.height -
+      0.5;
+
+    els.cupScene.style.transform =
+      `translate(-50%,-47%) ` +
+      `rotate(${-4 + x * 5}deg) ` +
+      `rotateX(${y * -8}deg) ` +
+      `rotateY(${x * 10}deg)`;
   });
 
   stage.addEventListener("pointerleave", () => {
-    els.cupScene.style.transform = "translate(-50%,-47%) rotate(-4deg)";
+    els.cupScene.style.transform =
+      "translate(-50%,-47%) rotate(-4deg)";
   });
 }
 
+/* تشغيل الموقع */
+
 buildTabs();
 renderMenu();
-setMood("focus");
+
+/* تطبيق مود توقيت الأردن عند فتح الموقع */
+applyJordanMood();
+
 setupReveal();
 setupCupMotion();
 updateScrollUI();
 
-document.getElementById("year").textContent = new Date().getFullYear();
+/* فحص توقيت الأردن كل دقيقة */
+setInterval(applyJordanMood, 60 * 1000);
 
-els.categoryTabs.addEventListener("click", event => {
-  const button = event.target.closest("button[data-category]");
-  if (button) setCategory(button.dataset.category);
-});
+const yearElement =
+  document.getElementById("year");
 
-els.menuSearch.addEventListener("input", renderMenu);
-els.moodPills.addEventListener("click", event => {
-  const button = event.target.closest("button[data-mood]");
-  if (button) setMood(button.dataset.mood);
-});
+if (yearElement) {
+  yearElement.textContent =
+    new Date().getFullYear();
+}
 
-els.navToggle.addEventListener("click", () => toggleMobileMenu());
-els.mobileMenu.addEventListener("click", event => {
-  if (event.target.closest("a")) toggleMobileMenu(false);
-});
+els.categoryTabs.addEventListener(
+  "click",
+  event => {
+    const button =
+      event.target.closest(
+        "button[data-category]"
+      );
 
-document.querySelectorAll(".menu-image-trigger").forEach(button => {
-  button.addEventListener("click", openMenuModal);
-});
-els.closeMenuModal.addEventListener("click", closeMenuModal);
-els.menuModal.addEventListener("click", event => {
-  const rect = els.menuModal.getBoundingClientRect();
-  const outside = event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom;
-  if (outside) closeMenuModal();
-});
-
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape") {
-    toggleMobileMenu(false);
+    if (button) {
+      setCategory(button.dataset.category);
+    }
   }
-});
+);
 
-window.addEventListener("scroll", updateScrollUI, { passive: true });
-window.addEventListener("resize", () => {
-  if (window.innerWidth > 1060) toggleMobileMenu(false);
-}, { passive: true });
+els.menuSearch.addEventListener(
+  "input",
+  renderMenu
+);
+
+els.moodPills.addEventListener(
+  "click",
+  event => {
+    const button =
+      event.target.closest(
+        "button[data-mood]"
+      );
+
+    if (button) {
+      setMood(button.dataset.mood);
+    }
+  }
+);
+
+els.navToggle.addEventListener(
+  "click",
+  () => toggleMobileMenu()
+);
+
+els.mobileMenu.addEventListener(
+  "click",
+  event => {
+    if (event.target.closest("a")) {
+      toggleMobileMenu(false);
+    }
+  }
+);
+
+document
+  .querySelectorAll(".menu-image-trigger")
+  .forEach(button => {
+    button.addEventListener(
+      "click",
+      openMenuModal
+    );
+  });
+
+els.closeMenuModal.addEventListener(
+  "click",
+  closeMenuModal
+);
+
+els.menuModal.addEventListener(
+  "click",
+  event => {
+    const rect =
+      els.menuModal.getBoundingClientRect();
+
+    const outside =
+      event.clientX < rect.left ||
+      event.clientX > rect.right ||
+      event.clientY < rect.top ||
+      event.clientY > rect.bottom;
+
+    if (outside) {
+      closeMenuModal();
+    }
+  }
+);
+
+document.addEventListener(
+  "keydown",
+  event => {
+    if (event.key === "Escape") {
+      toggleMobileMenu(false);
+      closeMenuModal();
+    }
+  }
+);
+
+window.addEventListener(
+  "scroll",
+  updateScrollUI,
+  {
+    passive: true
+  }
+);
+
+window.addEventListener(
+  "resize",
+  () => {
+    if (window.innerWidth > 1060) {
+      toggleMobileMenu(false);
+    }
+  },
+  {
+    passive: true
+  }
+);
